@@ -1,0 +1,22 @@
+.btn {
+    display: inline-block;
+}
+body {
+    padding-top: 40px;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+#leftButton, #rightButton {
+    width: 80px;
+    margin: 10px;
+}
