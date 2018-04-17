@@ -19,6 +19,10 @@
             leftArea.value = '';
           }
           break;
+        case 'swapButton':
+          [leftArea.value, rightArea.value] = [rightArea.value, leftArea.value];
+          if (leftArea.value !== '') leftArea.focus(); else rightArea.focus();
+          break;
         default: break;
       }
     });
