@@ -6,20 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
-    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.0/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-    <div class="container">
-        <textarea name="" id="leftArea" cols="30" rows="10"></textarea>
-        <div class="column">
-            <button class="btn" id="leftButton">&larr;</button>
-            <button class="btn" id="rightButton">&rarr;</button>
-        </div>
-        <textarea name="" id="rightArea" cols="30" rows="10"></textarea>
-    </div>
+    <section class="section">
+        <main class="container">
+            <div class="columns is-centered">
+                <div class="column">
+                    <textarea name="" class="textarea" id="leftArea" cols="30" rows="10"></textarea>
+                </div>
+                <div class="column is-1">
+                    <div class="tile is-vertical">
+                        <button class="button" id="leftButton">&larr;</button>
+                        <button class="button" id="rightButton">&rarr;</button>
+                    </div>
 
+                </div>
+                <div class="column">
+                    <textarea class="textarea" id="rightArea" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+        </main>
+    </section>
     <script src="js/app.js"></script>
 </body>
 

@@ -1,22 +1,10 @@
-.btn {
-    display: inline-block;
+.tile button.button {
+    margin: 5px 0;
 }
-body {
-    padding-top: 40px;
-}
-.container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+.tile button.button:first-child {
+    margin-top: 0;
 }
 
-.column {
-    display: flex;
-    flex-direction: column;
-}
-
-#leftButton, #rightButton {
-    width: 80px;
-    margin: 10px;
+.textarea {
+    -moz-appearance: textfield-multiline; /* fix gtk theme */
 }
