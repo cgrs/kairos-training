@@ -1,8 +1,8 @@
 /* global document */
-(function main(d) {
-  const leftArea = d.querySelector('#leftArea');
-  const rightArea = d.querySelector('#rightArea');
-  d.querySelectorAll('button').forEach((button) => {
+(function main() {
+  const leftArea = document.querySelector('#leftArea');
+  const rightArea = document.querySelector('#rightArea');
+  document.querySelectorAll('button').forEach((button) => {
     button.addEventListener('click', () => {
       switch (button.id) {
         case 'leftButton':
@@ -27,4 +27,4 @@
       }
     });
   });
-}(document));
+}());
