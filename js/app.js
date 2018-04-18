@@ -1,4 +1,3 @@
-/* global document */
 (function main() {
   const leftArea = document.querySelector('#leftArea');
   const rightArea = document.querySelector('#rightArea');
