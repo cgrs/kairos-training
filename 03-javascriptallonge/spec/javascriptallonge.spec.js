@@ -139,7 +139,82 @@ describe('Javascript Allongé', () => {
       })
     })
     describe('naming functions', () => {
-      
+      it('function names', () => {
+        const bindingName = function actualName() {}
+        expect(bindingName).toEqual(jasmine.any(Function))
+        expect(bindingName.name).toBe('actualName')
+        expect(() => actualName).toThrow(new ReferenceError('actualName is not defined'))
+      })
+      it('function name internal binding', () => {
+        const fn = function even(n) {
+          return (n === 0) ? true : !even(n - 1)
+        }
+        expect(fn(5)).toBe(false)
+        expect(fn(2)).toBe(true)
+      })
+    })
+    describe('combinators and function decorators', () => {
+      it('higher-order functions', () => {
+        spyOn(console, 'log')
+        const repeat = (n, f) => {
+          let i,value
+          for (i = 0; i < n; i++)
+            value = f(i)
+          return value
+        }
+        repeat(3,() => console.log('Hello'))
+        expect(console.log).toHaveBeenCalledTimes(3)
+      })
+      it('combinator', () => {
+        const   compose = (a, b) => (c) => a(b(c)),
+                 addOne = (n) => n + 1,
+               doubleOf = (n) => n * 2,
+         doubleOfAddOne = (n) => doubleOf(addOne(n)),
+        doubleOfAddOne2 = compose(doubleOf, addOne)
+        expect(doubleOfAddOne(3)).toBe(doubleOfAddOne2(3))
+      })
+      it('decorators', () => {
+        const not = (fn) => (arg) => !fn(arg),
+        something = (x) => x != null,
+          nothing = (x) => !something(x),
+         nothing2 = not(something)
+        expect(nothing(3)).toBe(nothing2(3))
+      })
+      it('composition', () => {
+        const compose = (a, b) => (c) => a(b(c)),
+                 cook = (food) => `cooked ${food}`,
+                  eat = (food) => `eating ${food}`,
+           cookAndEat = (food) => eat(cook(food)),
+          cookAndEat2 = compose(eat, cook)
+          expect(cookAndEat('rice')).toBe(cookAndEat2('rice'))
+      })
+      it('partial application', () => {
+        const map = (array, fn) => array.map(fn),
+          mapWith = (fn) => (array) => map(array, fn),
+           square = (array) => map(array, (n) => n * n),
+        squareAll = mapWith((n) => n * n)
+        expect(map([1, 2, 3], (n) => n * n)).toEqual(square([1, 2, 3]))
+        expect(square([1, 2, 3])).toEqual(squareAll([1, 2, 3]))
+      })
+    })
+    describe('function arguments', () => {
+      it('arguments context', () => {
+        function plus (a, b) { return arguments[0] + arguments[1] }
+        expect(plus(2,3)).toBe(5)
+      })
+      it('arguments object', () => {
+        function args() { return arguments }
+        expect(args(2, 3)).toEqual(jasmine.objectContaining({
+          '0': 2,
+          '1': 3
+        }))
+      })
+      it('argument count', () => {
+        function howMany() { return arguments.length }
+        expect(howMany()).toBe(0)
+        expect(howMany('hello')).toBe(1)
+        expect(howMany('sharks', 'are', 'apex', 'predators')).toBe(4)
+      })
     })
   })
 })
